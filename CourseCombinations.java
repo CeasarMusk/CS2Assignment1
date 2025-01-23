@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
-
+import java.util.HashSet;
 
 public class CourseCombinations
 {
@@ -23,7 +23,7 @@ public class CourseCombinations
 				{
 					String[] parts=scan.nextLine().split(" ");
 			
-					List<String> courses = new ArrayList<>();
+					Set<String> courses = new Hashset<>();
 				
 					for(int j = 1; j < parts.length; j++)
 						{	
@@ -35,10 +35,20 @@ public class CourseCombinations
 			}
 
 			scan.close();
-			for(Map.Entry<String, List<String>> entry : studentCourses.entrySet()){
-                        	System.out.println(entry.getKey()+": "+entry.getValue());
-                	}
 
+	}
+
+	public static void printHash(Map<String, Set<String>> studentCourses )
+	{
+		for(Map.Entry<String, Set<String>> entry : studentCourses.entrySet())
+		{
+			System.out.println(entry.getKey()+": "+entry.getValue());
+                }
+
+	}
+	public int uniquePairs(Map<String, Set<String>> studentCourses)
+	{
+	
 	}
 }
 
