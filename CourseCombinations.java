@@ -11,10 +11,7 @@ public class CourseCombinations
 {
 	public static void main(String[] args)
 	{
-		try
-		{
-			File data = new File("data.txt");
-			Scanner scan = new Scanner(data);
+			Scanner scan = new Scanner(System.in);
 			Map<String, List<String>> studentCourses=new HashMap<>();
 			
 			
@@ -41,15 +38,6 @@ public class CourseCombinations
 			  for(Map.Entry<String, List<String>> entry : studentCourses.entrySet()){
                         System.out.println(entry.getKey()+": "+entry.getValue());
                 }
-
-		} catch (FileNotFoundException e)
-		{
-			System.out.println("Something fucked up");
-			e.printStackTrace();
-		}
-	
-	
-	
 
 	}
 }
