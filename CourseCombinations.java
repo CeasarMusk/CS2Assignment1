@@ -36,6 +36,10 @@ public class CourseCombinations
 
 			scan.close();
 
+			printHash(studentCourses);
+			int pairs = uniquePairs(studentCourses);
+			System.out.println("\n\n\n Total pair is `${pairs}`");
+
 	}
 
 	public static void printHash(Map<String, Set<String>> studentCourses )
@@ -48,7 +52,23 @@ public class CourseCombinations
 	}
 	public int uniquePairs(Map<String, Set<String>> studentCourses)
 	{
-	
+		int pairs=0;
+		List<String> names = new ArrayList<>(studentCourses.keySet());
+		for(int i =0;i<names.size();i++)
+		{
+			for (int j = i+1; j<names.size();j++)
+			{
+				Set<String> coursesInCommon = new Hashset<>(studentCourses.get(name.get(i)));
+				coursesInCommon.retainAll(studentCourses.get(name.get(j)));
+				if(!coursesInCommon.isEmpty())
+				{
+					pairs++;
+				}
+
+			}
+		}
+
+		return pairs;
 	}
 }
 
