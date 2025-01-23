@@ -1,74 +1,73 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.HashSet;
+// Author: Ceasar Muscatella
+// Course: CS2
+// Semester: Spring 2025
 
-public class CourseCombinations
-{
-	public static void main(String[] args)
-	{
-			Scanner scan = new Scanner(System.in);
-			Map<String, List<String>> studentCourses=new HashMap<>();
-			
-			
-			int n = Integer.parseInt(scan.nextLine());
-			
-			for(int i =0; i< n;i++)
-			{
-				if(scan.hasNextLine())
-				{
-					String[] parts=scan.nextLine().split(" ");
-			
-					Set<String> courses = new Hashset<>();
-				
-					for(int j = 1; j < parts.length; j++)
-						{	
-							courses.add(parts[j]);
-						}
+import java.util.*;
+import java.io.*;
 
-					studentCourses.put(parts[0],courses);	
-				}
-			}
+public class CourseCombinations {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Map<String, Set<String>> studentCourses = new HashMap<>();
 
-			scan.close();
+        try {
+            // Read the number of students
+            System.out.println("Enter the number of students:");
+            int numStudents = Integer.parseInt(scan.nextLine());
 
-			printHash(studentCourses);
-			int pairs = uniquePairs(studentCourses);
-			System.out.println("\n\n\n Total pair is `${pairs}`");
+            // Read each student's courses
+            for (int i = 0; i < numStudents; i++) {
+                if (scan.hasNextLine()) {
+                    // Split the line into student name and courses
+                    String[] parts = scan.nextLine().trim().split("\\s+");
 
-	}
+                    // Extract and store courses in a HashSet
+                    Set<String> courses = new HashSet<>();
+                    for (int j = 1; j < parts.length; j++) {
+                        courses.add(parts[j]);
+                    }
 
-	public static void printHash(Map<String, Set<String>> studentCourses )
-	{
-		for(Map.Entry<String, Set<String>> entry : studentCourses.entrySet())
-		{
-			System.out.println(entry.getKey()+": "+entry.getValue());
+                    // Map the student to their courses
+                    studentCourses.put(parts[0], courses);
                 }
+            }
 
-	}
-	public int uniquePairs(Map<String, Set<String>> studentCourses)
-	{
-		int pairs=0;
-		List<String> names = new ArrayList<>(studentCourses.keySet());
-		for(int i =0;i<names.size();i++)
-		{
-			for (int j = i+1; j<names.size();j++)
-			{
-				Set<String> coursesInCommon = new Hashset<>(studentCourses.get(name.get(i)));
-				coursesInCommon.retainAll(studentCourses.get(name.get(j)));
-				if(!coursesInCommon.isEmpty())
-				{
-					pairs++;
-				}
+            // Calculate and output the total pairs
+            int pairs = uniquePairs(studentCourses);
+            System.out.println("\n" + pairs);
 
-			}
-		}
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Please enter a valid integer for the number of students.");
+        } finally {
+            scan.close();
+        }
+    }
 
-		return pairs;
-	}
+    // Debugging: Print the student-course map to verify data
+    public static void printHash(Map<String, Set<String>> studentCourses) {
+        for (Map.Entry<String, Set<String>> entry : studentCourses.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+
+    // Determines amount of Unique classes
+    public static int uniquePairs(Map<String, Set<String>> studentCourses) {
+        int pairs = 0;
+        List<String> names = new ArrayList<>(studentCourses.keySet());
+
+        for (int i = 0; i < names.size(); i++) {
+            for (int j = i + 1; j < names.size(); j++) {
+                // Find common courses between two students
+                Set<String> coursesInCommon = new HashSet<>(studentCourses.get(names.get(i)));
+                coursesInCommon.retainAll(studentCourses.get(names.get(j)));
+
+                if (!coursesInCommon.isEmpty()) {
+                    pairs++;
+                }
+            }
+        }
+
+        return pairs;
+    }
 }
 
