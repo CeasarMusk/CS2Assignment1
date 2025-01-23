@@ -35,9 +35,9 @@ public class CourseCombinations
 			}
 
 			scan.close();
-			  for(Map.Entry<String, List<String>> entry : studentCourses.entrySet()){
-                        System.out.println(entry.getKey()+": "+entry.getValue());
-                }
+			for(Map.Entry<String, List<String>> entry : studentCourses.entrySet()){
+                        	System.out.println(entry.getKey()+": "+entry.getValue());
+                	}
 
 	}
 }
